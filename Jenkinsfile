@@ -9,7 +9,7 @@ environment {
 	
 	}
 		
-	agent { label 'docker' }
+	agent any
 	
 	triggers {
 		pollSCM '* * * * *'
