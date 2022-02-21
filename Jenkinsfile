@@ -18,8 +18,7 @@ environment {
 	stages {
 		stage("POLL SCM"){
 			steps {
-				 checkout([$class: 'GitSCM', branches: [[name: "$gitBranch"]], extensions: [], userRemoteConfigs: [[credentialsId: "$gitCredId", url: "$gitRepo"]]])
-			
+				 git branch: 'main', url: 'https://github.com/swathi431/nodejs-k8s.git'
 }
 		}	
 					
@@ -41,15 +40,6 @@ environment {
 			} 
 		}
 					
-		stage('DEPLOY IMAGE') {
-			steps {
-				script { 
-					 docker.withRegistry( '', registryCredential ) { 
-						 dockerImage.run('-it --name "$containerName-$dockerTag"') 
-					}
-				} 
-			}
-		}
 	}
 			  
 }
